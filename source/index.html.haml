@@ -4,24 +4,24 @@ title: "@Pay | Developer Docs"
 
 %h1.title @Pay 101
 
-%p.desc @Pay offers a suite of tools that developers can use to integrating our 2-click payment platorm with any application. With an implementation of our v4 APIs, your organization can create offers, send invoices, register payment methods, recieve transaction information & more!
+%p.desc @Pay offers a suite of tools that developers can use to integrating our 2-click payment platform with any application. With an implementation of our v4 APIs, your organization can create offers, send invoices, register payment methods, receive transaction information & more!
 
 %hr
 
 
 %h2.title Things to Know
-%p Throughout the documentation there are referecences that are specific to the @Pay platform. Here are some brief descriptions:
+%p Throughout the documentation there are references that are specific to the @Pay platform. Here are some brief descriptions:
 
 
 %p
   %strong
     @Pay 2-Click Enabled -
-  A customer is 2-Click Enabled if they have registerd thier card with your organization to make payments. Any transaction request that is made with an @Pay Button or @Pay Mailto by a 2-Click Enabled customer will automatically process with your Gateway.
+  A customer is 2-Click Enabled if they have registered their card with your organization to make payments. Any transaction request that is made with an @Pay Button or @Pay Mailto by a 2-Click Enabled customer will automatically process with your Gateway.
 
 %p
   %strong
     @Pay 2-Click Button -
-  A mobile and platform optimized html button that is placed into an email campaign or mobile webpage. These link out to an @Pay Mailto, or directly to a payment capture page. @Pay 2-click buttons are generally created and available when an Offer is generated.
+  A mobile and platform optimized HTML button that is placed into an email campaign or mobile webpage. These link out to an @Pay Mailto or directly to a payment capture page. @Pay 2-Click Buttons are generally created and available when an Offer is generated.
 
 %p
   %strong
@@ -41,29 +41,29 @@ title: "@Pay | Developer Docs"
 %p
   %strong
     @Pay Offer -
-  An offer can be generated mannualy from the Organization Dashboard or dynamically using one of our SDK's. Transactions are processed agains offers. An offer can be tied to an @Pay 2-click Button, a Payment Capture Page, an @Pay Invoice or even a QR code. When an offer is created, an @Pay Mailto is generated. When configuring an Offer you can set the price, expiration date, offer details, and a varity of additional arguments. A list of Offers created can be seen from within your Organiztion Dashboard.
+  An offer can be generated mannualy from the Organization Dashboard or dynamically using one of our SDK's. Transactions are processed against offers. An offer can be tied to an @Pay 2-Click Button, a Payment Capture Page, an @Pay Invoice or even a QR code. When an offer is created, an @Pay Mailto is generated. When configuring an Offer you can set the price, expiration date, offer details, and a varity of additional options. A list of created Offers created can be seen from within your Organization Dashboard.
 
 %p
   %strong
     @Pay Token -
-  A tokenized representation of a customer's payment method. These can be safley stored and used to process transactions with the JavaScript SDK, and generate offers tied to that speficic @Pay Token.
+  A tokenized representation of a customer's payment method. These can be safely stored and used to process transactions with the JavaScript SDK and generate offers tied to that speficic @Pay Token.
 
 %p
   %strong
     Authorized Domain -
-  This is set in the organization Dashboard in API settings. The Authorized Domain is one of the mechanisms used to verify and authorize the use of our Javascript SDK. Set to the URL of the application that is being integrated.
+  This is set in the Organization Dashboard in API settings. The Authorized Domain is one of the mechanisms used to verify and authorize the use of our Javascript SDK. This is set to the URL of the application that is being integrated.
 
 %p
   %strong
     Gateway -
-  @Pay connects with a variety of different Gateways or payment processors. Every Organization is provided with a "Test" gateway for development purposes. Gateways are added in the Organization Dashboard. An Offer can be tied to a specific gateway when being created - or the default gateway at the time of Offer creation will be used. A list of compatibly gateways can be viewed #{link_to "here", "http://www.atpay.com/features/compatibility/"}.
+  @Pay connects with a variety of different Gateways or payment processors. Every Organization is provided with a "Test" gateway for development purposes. Gateways are added in the Organization Dashboard. An Offer can be tied to a specific gateway when being created or the default gateway at the time of Offer creation will be used. A list of compatibly gateways can be viewed #{link_to "here", "http://www.atpay.com/features/compatibility/"}.
 
 %p
   %strong
     Payment Capture Page -
-  A webpage that captures a customer's payment details. A customer will only need fill out a Payment Capture Page once - and then they are 2-click enabled. If an offer is attempted by a new customer, they will receive a FAR email with a link to the Payment Capture Page. @Pay dynamically will create a PCP for the offer, or you can configure and use your own payment form (that utilizes our JS SDK).
+  A webpage that captures a customer's payment details. A customer will only need fill out a Payment Capture Page once, and then they are 2-Click Enabled. If an offer is attempted by a new customer, they will receive a FAR email with a link to the Payment Capture Page. @Pay will dynamically create a Payment Capture Page for each of your offers, or you can configure and use your own payment form (that utilizes our Javascript SDK).
 
 %p
   %strong
     FAR (Further Action Required) -
-  If a transaction is submitted by a customer and @Pay needs further details, then the transaction will be marked as FAR. By default @Pay will send an email specifiying what is required. A customer will receiver a FAR message if they are attempting to make a payment with your organization for the first time. In rare occasions A FAR will also be generated to authenticate the transaction if certain security checks dont pass on our end.
+  If a transaction is submitted by a customer and @Pay needs further details, the transaction will be marked as FAR. By default @Pay will send an email specifiying what is required. A customer will receiver a FAR message if they are attempting to make a payment with your organization for the first time. On rare occasions, a FAR will also be generated to authenticate the transaction if certain security checks aren't met.
