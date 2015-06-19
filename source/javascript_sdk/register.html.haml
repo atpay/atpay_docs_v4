@@ -1,0 +1,153 @@
+---
+title: "@Pay | Developer Docs"
+---
+
+
+
+%h1.title JavaScript SDK || Payement Method Registration
+
+%p.desc Register a new card for use. If this is the initial registration of a card, it is possible to optionally create a transaction on behalf of that Customer.
+
+%hr
+
+.section
+  %h2.title Description
+  %p Creates a new credit card record with @Pay and provides a token which can be used for future transactions against it. If the form contains a field called ‘amount’, @Pay will also process a transaction for this amount.
+
+  .tabs.refblock
+    %h3.tab_title <span><strong>atpay.register(form object, callback)</strong></span>
+    %ul.lang-nav
+      %li.TabA
+        %a{:href => "#TabA"} Example
+      %li.TabB.active
+        %a{:href => "#TabB"} Arguments
+      %li.TabC.active
+        %a{:href => "#TabC"} Response
+    #TabA.tab_cont.first{:style => "display: none;"}
+      :code
+        # lang: html
+        <script type="text/javascript">
+
+           // For initial registration.
+           $(document).ready(function() {
+               $("#form-id").submit(function(e) {
+                  e.preventDefault();
+                  atpay.register("#form-id",function(response){
+                    // validate response
+                  });
+               });
+            });
+
+           // For updating a registered card.
+           $(document).ready(function() {
+               $("#form-id").submit(function(e) {
+                  e.preventDefault();
+                  atpay.update("#form-id",function(response){
+                    // validate response
+                  })
+               });
+            });
+
+        </script>
+    #TabB.tab_cont{:style => "display: block;"}
+      %table.args
+        %thead
+          %tr
+            %th{:style => "text-align: left"} Attribute
+            %th{:style => "text-align: left"} Description
+        %tbody
+          %tr
+            %td{:style => "text-align: left"} form object
+            %td{:style => "text-align: left"} The form element on your page that accepts card information, or a javascript object containing the card details by name
+          %tr
+            %td{:style => "text-align: left"} callback
+            %td{:style => "text-align: left"} Function to call when the card registration fails or succeeds
+    #TabC.tab_cont{:style => "display: block;"}
+
+      %p After a card has been successfully registered, you will receive the following information in the response argument to your callback function.
+
+      :code
+        # lang: javascript
+        {
+          atpay_token:               "XYZ",
+          message:                       "registration_response",
+          referrer_context:     "sku-11",
+          signature:                     "a5ac216fd6d43c424da4e743291ac01e87b9a414",
+          transaction:                {
+                balance:                          "40.0",
+                created_at:                    "2013-08-12 00:00:00 -0600",
+                fee:                                    "0.0",
+                id:                                       "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+                signature:                      "b6bd327ge7e53c424da4e33256adccf82lsla1xy"
+                                                       }
+        }
+      %table.args{style: "margin-top:10px;"}
+        %thead
+          %tr
+            %th{:style => "text-align: left"} Attribute
+            %th{:style => "text-align: left"} Description
+        %tbody
+          %tr
+            %td{:style => "text-align: left"} atpay_token
+            %td{:style => "text-align: left"} The reference used to charge this card in the future. You should store this value safely on your server
+          %tr
+            %td{:style => "text-align: left"} message
+            %td{:style => "text-align: left"} The response type
+          %tr
+            %td{:style => "text-align: left"} referrer_context
+            %td{:style => "text-align: left"} The value you passed through the registration process
+          %tr
+            %td{:style => "text-align: left"} signature
+            %td{:style => "text-align: left"} Can be used to verify responses are valid
+          %tr
+            %td{:style => "text-align: left"} transaction
+            %td{:style => "text-align: left"} If you specified an amount, the corresponding transaction details
+
+
+  %h2.title The Registration Form
+
+  %p The form you implement to accept credit card information is hosted on your site. @Pay’s SDK will wrap your form submission process to first post sensitive information to our PCI compliant servers, and then removes that information from your form so you can submit it to your server:
+
+  %ol{style: "margin-left:50px; margin-bottom:40px;"}
+    %li Your customer visits a page on your site with an @Pay enabled form.
+    %li Your customer enters credit card information and billing information into this form.
+    %li Upon submission, @Pay submits the credit card and billing information to our servers.
+    %li If the transaction is successful, we append a card reference token to your form.
+    %li We remove the sensitive information (fields marked wth ‘atpay-data-protected’)
+    %li Your form submission process carries on as normal, without the sensitive information.
+
+
+  %p Since @Pay’s SDK is designed to work with your existing forms, we understand that the names of your fields may differ from @Pay’s expectations. Instead of using the name attribute, @Pay’s SDK uses the data-atpay attribute to determine the name of a field.
+
+
+
+  %p
+    %strong{style:"font-weight:900;"} data-atpay-protected -
+    Any input field without a name attribute is not submitted to your server when a customer clicks ‘Post’, but as an additional safeguard, adding the data-atpay-protected attribute will ensure that @Pay’s SDK removes the form element prior to submission.
+
+
+    %h2.title Example Form
+    :code
+      # lang: html
+      <form action="/submit" method="POST" id="registration-form">
+        <!-- phone number is passed to @Pay as 'phone', and to your server as 'phone_number' -->
+        <input type="text" name="phone_number" data-atpay="phone" />
+
+        <input type="text" name="first" data-atpay="first_name" />
+        <input type="text" name="last" data-atpay="last_name" />
+        <input type="text" name="email" data-atpay="email" />
+        <input type="text" name="street" data-atpay="street" />
+        <input type="text" name="city" data-atpay="city" />
+        <input type="text" name="state" data-atpay="state" />
+        <input type="text" name="zip" data-atpay="zip" />
+        <input type="text" name="country" data-atpay="country" value="United States" />
+        <input type="text" name="phone" data-atpay="phone" />
+
+        <input type="text" data-atpay="card_number" data-atpay-protected="true" />
+        <input type="text" data-atpay="card_type" />
+        <input type="text" data-atpay="exp_month" />
+        <input type="text" data-atpay="exp_year" />
+        <input type="text" data-atpay="cvc" data-atpay-protected="true" />
+
+        <input type="submit" />
+      </form>

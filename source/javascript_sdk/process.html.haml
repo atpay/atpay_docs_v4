@@ -1,0 +1,92 @@
+---
+title: "@Pay | Developer Docs"
+---
+
+
+
+%h1.title JavaScript SDK || Charging a Card
+
+%p.desc Process transactions from a web site using the card token returned in the registration call.
+
+
+%hr
+
+.section
+  %h2.title Description
+  %p The sale call uses a provided amount and card token to process a transaction.
+
+  .tabs.refblock
+    %h3.tab_title <span><strong>atpay.sale(amount, callback, options)</strong></span>
+    %ul.lang-nav
+      %li.TabA
+        %a{:href => "#TabA"} Example
+      %li.TabB.active
+        %a{:href => "#TabB"} Arguments
+      %li.TabC.active
+        %a{:href => "#TabC"} Response
+    #TabA.tab_cont.first{:style => "display: none;"}
+      :code
+        # lang: html
+        <script type="text/javascript">
+              $(function(){
+                    $("form").submit(function(){
+                      atpay.sale(55.00,   function(response){
+                        // validate response
+                      }, {
+                        card: "XYZabc",
+                        referrer_context: "ref-code-0"
+                      });
+                    });
+              });
+        </script>
+    #TabB.tab_cont{:style => "display: block;"}
+      %table.args
+        %thead
+          %tr
+            %th{:style => "text-align: left"} Attribute
+            %th{:style => "text-align: left"} Description
+        %tbody
+          %tr
+            %td{:style => "text-align: left"} amount
+            %td{:style => "text-align: left"} A numeric amount of the transaction in dollars
+          %tr
+            %td{:style => "text-align: left"} callback
+            %td{:style => "text-align: left"} A function to call when the sale has succeeded or failed.
+          %tr
+            %td{:style => "text-align: left"} options
+            %td{:style => "text-align: left"} A Javascript Object with additional parameters, ‘card’ is a required value, and ‘referrer_context’ is a value you wish to store with the transaction data
+    #TabC.tab_cont{:style => "display: block;"}
+
+      %p On a transaction success, you will receive the following information in the response argument to your callback function.
+
+      :code
+        # lang: javascript
+        {
+          id:   "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+          balance:   10.0,
+          fee:  0.0,
+          signature:  "a5ac216fd6d43c424da4e743291ac01e87b9a414",
+          created_at: "2013-03-15T14:19:35-06:00",
+          updated_at: "2013-03-15T14:19:35-06:00"
+        }
+      %table.args{style: "margin-top:10px;"}
+        %thead
+          %tr
+            %th{:style => "text-align: left"} Attribute
+            %th{:style => "text-align: left"} Description
+        %tbody
+          %tr
+            %td{:style => "text-align: left"} id
+            %td{:style => "text-align: left"} The @Pay identifier for this transaction
+          %tr
+            %td{:style => "text-align: left"} balance
+            %td{:style => "text-align: left"} The final amount for the transaction
+          %tr
+            %td{:style => "text-align: left"} fee
+            %td{:style => "text-align: left"} The fee amount taken for this transaction
+          %tr
+            %td{:style => "text-align: left"} created_at
+            %td{:style => "text-align: left"} The timestamp when the transaction was created
+          %tr
+            %td{:style => "text-align: left"} updated_at
+            %td{:style => "text-align: left"} The timestamp when the transaction was updated

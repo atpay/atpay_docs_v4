@@ -1,0 +1,46 @@
+---
+title: "@Pay | Developer Docs - Organization Dashboard"
+---
+
+%h1.title Web Hooks and Responses
+%p.desc
+  @Pay may send HTTP requests with details about relevant events (including successful and failed Transactions) to your application. Configure your application’s Hook Endpoints with @Pay on the API settings page of your Merchant Dashboard.
+
+
+%hr
+
+%p.hooks Hook Notifications are HTTP requests with two URL encoded parameters: details, and signature:
+
+:code
+  # lang: curl
+  POST /atpay/endpoint
+  Accept: */*
+  Content-Type: application/x-www-form-urlencoded
+  Connection: close
+  Host: example.com
+  Content-Length: 1337
+
+  details=ABC&signature=XYZ
+
+%p The Hook details are a JSON encoded hash containing information about the Transaction, and the signature is an HMAC SHA1 of the details parameter with your Merchant’s Private Key. Your application should verify the signature of all Hook Notifications.
+
+
+%h2.title The Pre-Sale Hook
+%p{style: "margin-bottom:20px;" } Before @Pay sends a request to your Payment Gateway, we will evaluate Pre-Sale Hook Notification responses from your application. You may wish to use a Pre-Sale Hook to perform inventory checks.
+
+%p If your Hook Notification response contains an HTTP status code between 200 and 299, @Pay will continue processing the Transaction. If your Hook Notification response has a status code between 500 and 599 then @Pay will consider the response an error and trigger Error Hook Notifications with further information. Any other status codes indicate @Pay should not process the transaction.
+
+%h2.title The Transaction Hook
+%p If @Pay completes a request to your Payment Gateway successfully, we will trigger a Transaction Hook Notification.
+
+
+%h2.title The Further Action Required Hook
+
+%p When Further action is required by a customer during a Transaction processing we will trigger an FAR Hook Notification. Depending on what action is required, the hook response will include a new verification token, mailto link and/or signup url.
+
+
+%h2.title The Error Hook
+%p When an error is encountered during Transaction processing we will trigger an Error Hook Notification. This may result from either inbound email messages or from web-based transactions.
+
+%h2 Retries
+%p Except in the case of the Pre-Sale Hook, which is only attempted once, if your Hook Endpoint responds with a status code not between 200 and 299, @Pay will retry the request up 10 times within the span of 28 hours before dropping it.

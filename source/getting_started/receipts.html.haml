@@ -1,0 +1,39 @@
+---
+title: "@Pay | Developer Docs - Organization Dashboard"
+---
+
+%h1.title Configure Reciepts & Messaging
+%p.desc You can configure your Reciept and Messaging settings in the Organization Dashboard. You can upload your logo here, turn on and off email notifications and set your email color scheme.
+
+%hr
+
+%h2.title Template Colors
+= image_tag "template_colors.png", class: "full_image"
+%p This will configure the color schema for emails that @Pay sends on your organization's behalf. @Pay hosted Payment capture pages will also use this color scheme.
+
+%h2.title Sender Settings
+= image_tag "sender_settings.png", class: "full_image"
+
+%p
+  %strong
+    Reply-To Address:
+  This is where email's that are sent by @Pay on your organization's behalf will come from. This address will also appear in contact information below email messages and Payment Capture Pages.
+
+%p
+  %strong
+    Service Phone Number:
+  This number will appear in contact information below email messages and Payment Capture Pages.
+%p
+  %strong
+    Support Website:
+  This URL will appear in contact information below email messages and Payment Capture Pages.
+
+%p
+  %strong
+    Organization / DBA Name / Reply-To:
+  This name will appear in your emails when reffering to your Organization. This name will also be a part of the from field in emails sent from @Pay.
+
+
+%h2.title Message Settings
+= image_tag "message_settings.png", class: "full_image"
+%p If your Organization has been vetted and verified by @Pay, you can toggle which emails you want @Pay to send out. If you choose to not use @Pay messaging you can use our hooks to send your own messaging. If you would like to have this feature turned on, please contact us at sales@atpay.com.

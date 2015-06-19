@@ -1,0 +1,68 @@
+!!!
+%html
+  %head
+    %meta{:charset => "utf-8"}
+      / Always force latest IE rendering engine or request Chrome Frame
+      %meta{:content => "IE=edge,chrome=1", "http-equiv" => "X-UA-Compatible"}
+        / Use title if it's in the page YAML frontmatter
+        %title= current_page.data.title || "The Middleman"
+        = stylesheet_link_tag "normalize", "all"
+        %script{:src => "https://code.jquery.com/jquery-1.11.3.min.js", :type => "text/javascript"}
+        = javascript_include_tag  "all"
+        %link{:href => 'http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic', :rel=>'stylesheet', :type=> 'text/css'}
+  %body{:class => page_classes}
+
+    #header
+      %h1.logo
+        =image_tag 'atpay_logo.png'
+        %span
+          Platform Documentation
+    #body
+      #sidebar
+        .content
+          %ul#main_nav
+            %li
+              =nav_link "@Pay 101", "#"
+              %ul
+                %li=nav_link "Things To Know", "/"
+                %li=nav_link "Your Organization Dashboard", "/getting_started/dashboard.html"
+                %li=nav_link "Configure Reciepts & Messaging", "/getting_started/receipts.html"
+                %li=nav_link "Manage Gateways", "/getting_started/gateways.html"
+                %li=nav_link "Configure API Access", "/getting_started/api_config.html"
+                %li=nav_link "Test Gateway & Cards", "/getting_started/testing.html"
+                %li=nav_link "Customers & List Segmentation", "/getting_started/customers.html"
+
+            %li
+              =nav_link "JavaScript SDK", "#"
+              %ul
+                %li=nav_link "Intro & Configuration", "/javascript_sdk/intro.html"
+                %li=nav_link "Register Payment Methods", "/javascript_sdk/register.html"
+                %li=nav_link "Process Transactions", "/javascript_sdk/process.html"
+                %li=nav_link "Generate Offer", "/javascript_sdk/offer.html"
+                -# %li=nav_link "Generate Invoice", "#"
+
+            %li
+              =nav_link "Web Hooks", "#"
+              %ul
+                %li=nav_link "Configuration", "/hook_config.html"
+                %li=nav_link "Hooks & Responses", "/hooks.html"
+                -# %li=nav_link "Pre-Sale Hook", "#"
+                -# %li=nav_link "Transaction Hook", "#"
+                -# %li=nav_link "Error Hook", "#"
+                -# %li=nav_link "FAR Hook", "#"
+
+            %li
+              =nav_link "More API Wrappers", "#"
+              %ul
+                %li=nav_link "Ruby SDK", "https://github.com/atpay/atpay_ruby/"
+                %li=nav_link "PHP SDK", "https://github.com/atpay/atpay_php/"
+
+            -# %li=nav_link  "REST APIs", "#"
+            -# %li=nav_link  "Security & FAQ", "#"
+            %li=nav_link  "Legacy Documentaion", "http://developer.atpay.com/"
+
+      #content
+        .content
+          = yield
+      .clear
+    #footer

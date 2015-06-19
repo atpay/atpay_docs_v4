@@ -1,0 +1,60 @@
+---
+title: "@Pay | Developer Docs"
+---
+
+
+
+%h1.title JavaScript SDK || Introduction & Configuration
+
+%p.desc The @Pay JavaScript SDK allows you to safely register @Pay accounts, tokenize Credit Card records and run Transactions.
+
+%hr
+
+%h2.title Supported Browsers
+%p In order to accept payments or register cards successfully with the @Pay JS SDK, your Customer should be using IE8+, Chrome, Firefox 3+, Safari 5.1+ (OSX / iOS) and must have Javascript enabled.
+
+.section#configuration
+  %h2.title Installation
+  %p The SDK is loaded by placing the script element at the end of the body element. (Please load jQuery (>= 1.9.1) independently of the SDK)
+
+  .tabs.refblock
+    .tab_cont.first
+      :code
+        # lang: html
+          <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+          <script type="text/javascript" src="https://dashboard.atpay.com/sdk/v4.js"></script>
+  %h2.title Configuration
+  %p The SDK is loaded by placing the script element at the end of the body element. (Please load jQuery (>= 1.9.1) independently of the SDK)
+
+
+  .tabs.refblock
+    %h3.tab_title <span><strong>atpay.config(settings)</strong></span>
+    %ul.lang-nav
+      %li.TabA
+        %a{:href => "#TabA"} Example
+      %li.TabB.active
+        %a{:href => "#TabB"} Arguments
+    #TabA.tab_cont.first{:style => "display: none;"}
+      :code
+        # lang: html
+            <script type="text/javascript">
+                    $(function(){
+                          atpay.config({
+                            organization_sid:  "xxx-xxx-xxx",
+                            default_gateway:  "xxx-xxx-xxx"
+                          });
+                    });
+            </script>
+    #TabB.tab_cont{:style => "display: block;"}
+      %table.args
+        %thead
+          %tr
+            %th{:style => "text-align: left"} Attribute
+            %th{:style => "text-align: left"} Description
+        %tbody
+          %tr
+            %td{:style => "text-align: left"} organization_sid
+            %td{:style => "text-align: left"} The Organization SID found in your Orgnaization Dashboard under 'API Settings'
+          %tr
+            %td{:style => "text-align: left"} default_gatway
+            %td{:style => "text-align: left"} The Gateway SID that you want to assign to all Offers (optional)

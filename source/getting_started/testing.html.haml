@@ -1,0 +1,39 @@
+---
+title: "@Pay | Developer Docs - Organization Dashboard"
+---
+
+%h1.title Test Gateways & Cards
+%p.desc Every Organization account comes with a test Gateway and a collection of test cards that can similuate transactions.
+%hr
+
+%h2.title Test Cards
+%p You can use the following test cards to simulate transactions on Offers and Invoices configured with test gateways.
+
+%table.cards
+  %thead
+    %tr
+      %th{style: "text-align: left"}Type
+      %th{style: "text-align: left"}Card Number
+      %th{style: "text-align: left"}Declined/Failed Card
+  %tbody
+    %tr
+      %td{style: "text-align: left"} Visa
+      %td{style: "text-align: left"} 4111 1111 1111 1111
+      %td{style: "text-align: left"} 4012 8888 8888 1881
+    %tr
+      %td{style: "text-align: left"} MasterCard
+      %td{style: "text-align: left"} 5555 5555 5555 4444
+      %td{style: "text-align: left"} 5105 1051 0510 5100
+    %tr
+      %td{style: "text-align: left"} Discover
+      %td{style: "text-align: left"} 6011 1111 1111 1117
+      %td{style: "text-align: left"} 6011 0009 9013 9424
+    %tr
+      %td{style: "text-align: left"} American Express
+      %td{style: "text-align: left"} 3782 8224 6310 005
+      %td{style: "text-align: left"} 3714 4963 5398 431
+
+
+%h2.title Test Gateways
+= image_tag "test_offer.png", class: "full_image"
+%p If you want to simulate a Test transaction with an offer, you must choose <em>Test Gateway</em> in the offer Generator. If you are generating an offer from the JavaScript or another @Pay wrapper, you must set the <em>offer_restricted_gateway</em> argument to your Test Gateway SID. You can find the SID under "Manage Gateways" in your dashboard.

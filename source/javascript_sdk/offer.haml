@@ -1,0 +1,140 @@
+---
+title: "@Pay | Developer Docs"
+---
+
+
+
+%h1.title JavaScript SDK || Generate an @Pay Offer
+
+%p.desc Creates an @Pay offer
+
+
+%hr
+
+.section
+  %h2.title Description
+  %p The offer call uses a provided name, description, amount and other arguments to create an @Pay offer.
+
+  .tabs.refblock
+    %h3.tab_title <span><strong>atpay.offer(amount, title, options, callback)</strong></span>
+    %ul.lang-nav
+      %li.TabA
+        %a{:href => "#TabA"} Example
+      %li.TabB.active
+        %a{:href => "#TabB"} Arguments
+      %li.TabC.active
+        %a{:href => "#TabC"} Response
+    #TabA.tab_cont.first{:style => "display: none;"}
+      :code
+        # lang: html
+        <script type="text/javascript">
+              $(function(){
+                  atpay.sale(25.00, "Donate $25.00",
+                  {
+                    description: "A brief description"
+                    expiration: 365,
+                    requires_shipping_address: true
+                  },
+                  function(response){
+                    // do something cool
+                  });
+              });
+        </script>
+    #TabB.tab_cont{:style => "display: block;"}
+      %table.args
+        %thead
+          %tr
+            %th{:style => "text-align: left"} Attribute
+            %th{:style => "text-align: left"} Description
+        %tbody
+          %tr
+            %td{:style => "text-align: left"} amount
+            %td{:style => "text-align: left"} A numeric amount of the transaction in dollars
+          %tr
+            %td{:style => "text-align: left"} title
+            %td{:style => "text-align: left"} A function to call when the sale has succeeded or failed.
+          %tr
+            %td{:style => "text-align: left"} options
+            %td{:style => "text-align: left"} A Javascript Object with additional parameters. See options table below.
+          %tr
+            %td{:style => "text-align: left"} callback
+            %td{:style => "text-align: left"} A Javascript Object with additional parameters, ‘card’ is a required value, and ‘referrer_context’ is a value you wish to store with the transaction data
+
+
+            %table.args{style: "margin-top:20px;"}
+              %thead
+                %tr
+                  %th{:style => "text-align: left"} Option
+                  %th{:style => "text-align: left"} Description
+              %tbody
+                %tr
+                  %td{:style => "text-align: left"} desctription
+                  %td{:style => "text-align: left"} A string value that sets the details or description of generated Offer
+                %tr
+                  %td{:style => "text-align: left"} gateway
+                  %td{:style => "text-align: left"} The Gateway SID you would like to assign to the Offer. Use "test_gatway" for a test Offer. If not set, the Organization's default Gateway will be used.
+                %tr
+                  %td{:style => "text-align: left"} expiration
+                  %td{:style => "text-align: left"} The number of days the Offer will expire after generated.
+                %tr
+                  %td{:style => "text-align: left"} payment_capture_page_url
+                  %td{:style => "text-align: left"} A valid url that will be used for a custom Payment Capture Page.
+                %tr
+                  %td{:style => "text-align: left"} requires_shipping_address
+                  %td{:style => "text-align: left"} A boolean value that sets whether or not to require shipping info
+                %tr
+                  %td{:style => "text-align: left"} requires_billing_address
+                  %td{:style => "text-align: left"} A boolean value that sets whether or not to require billing info
+                %tr
+                  %td{:style => "text-align: left"} request_custom_data
+                  %td{:style => "text-align: left"} A JS object containing ‘name’ and ‘required’ that will generate custom fields if using the hosted payment page. ex {name:”custom_field”, required: true}
+
+
+
+
+    #TabC.tab_cont{:style => "display: block;"}
+
+      %p On a transaction success, you will receive the following information in the response argument to your callback function.
+
+      :code
+        # lang: javascript
+          {
+            id:   "950F68EF-C0FD-4679-83E1-119F43F867BF",
+            title:   "Donate $25.00",
+            amount: 25.00,
+            mail_to:  "mailto:payment-id-950F68EF-C0FD-4679-83E1-119F43F867BF@payments.atpay.com?subject=Press%20...".
+            payment_capture_page:  "http://test_organization.atpay.com/950F68EF-C0FD-4679-83E1-119F43F867BF",
+            qr_code: "https://dashboard.atpay.com/offers/950F68EF-C0FD-4679-83E1-119F43F867BF.png"
+            button_html: " <!— begin @Pay button —>....",
+            created_at: "2013-03-15T14:19:35-06:00"
+          }
+      %table.args{style: "margin-top:10px;"}
+        %thead
+          %tr
+            %th{:style => "text-align: left"} Attribute
+            %th{:style => "text-align: left"} Description
+        %tbody
+          %tr
+            %td{:style => "text-align: left"} id
+            %td{:style => "text-align: left"} The @Pay identifier for this Offer
+          %tr
+            %td{:style => "text-align: left"} title
+            %td{:style => "text-align: left"} The name of the Offer
+          %tr
+            %td{:style => "text-align: left"} amount
+            %td{:style => "text-align: left"} The amount of the Offer in dollars
+          %tr
+            %td{:style => "text-align: left"} mail_to
+            %td{:style => "text-align: left"} The @Pay Mailto Link associated with the Offer
+          %tr
+            %td{:style => "text-align: left"} payment_capture_page
+            %td{:style => "text-align: left"} The url to the Payment Capture Page for the Offer
+          %tr
+            %td{:style => "text-align: left"} qr_code
+            %td{:style => "text-align: left"} The url for the @Pay QR image associated with the Offer
+          %tr
+            %td{:style => "text-align: left"} button_html
+            %td{:style => "text-align: left"} The markup for the @Pay Button associated with the Offer
+          %tr
+            %td{:style => "text-align: left"} created_at
+            %td{:style => "text-align: left"} The timestamp when the transaction was updated
