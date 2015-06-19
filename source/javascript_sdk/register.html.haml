@@ -106,14 +106,14 @@ title: "@Pay | Developer Docs"
 
   %h2.title The Registration Form
 
-  %p The form you implement to accept credit card information is hosted on your site. @Pay’s SDK will wrap your form submission process to first post sensitive information to our PCI compliant servers, and then removes that information from your form so you can submit it to your server:
+  %p The form you implement to accept credit card information is hosted on your site. @Pay’s SDK will wrap your form submission process to first post sensitive information to our PCI compliant servers, and then remove that information from your form so you can submit it to your server:
 
   %ol{style: "margin-left:50px; margin-bottom:40px;"}
     %li Your customer visits a page on your site with an @Pay enabled form.
     %li Your customer enters credit card information and billing information into this form.
     %li Upon submission, @Pay submits the credit card and billing information to our servers.
     %li If the transaction is successful, we append a card reference token to your form.
-    %li We remove the sensitive information (fields marked wth ‘atpay-data-protected’)
+    %li We remove the sensitive information (fields marked with ‘atpay-data-protected’)
     %li Your form submission process carries on as normal, without the sensitive information.
 
 
@@ -123,7 +123,7 @@ title: "@Pay | Developer Docs"
 
   %p
     %strong{style:"font-weight:900;"} data-atpay-protected -
-    Any input field without a name attribute is not submitted to your server when a customer clicks ‘Post’, but as an additional safeguard, adding the data-atpay-protected attribute will ensure that @Pay’s SDK removes the form element prior to submission.
+    Any input field without a name attribute is not submitted to your server when a customer clicks ‘Submit’, but as an additional safeguard, adding the data-atpay-protected attribute will ensure that @Pay’s SDK removes the form element prior to submission.
 
 
     %h2.title Example Form
