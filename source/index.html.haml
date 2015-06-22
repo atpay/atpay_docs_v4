@@ -41,17 +41,17 @@ title: "@Pay | Developer Docs"
 %p
   %strong
     @Pay Offer -
-  An offer can be generated manually from the Organization Dashboard or dynamically using one of our SDK's. Transactions are processed against offers. An offer can be tied to an @Pay 2-Click Button, a Payment Capture Page, an @Pay Invoice or even a QR code. When an offer is created, an @Pay Mailto is generated. When configuring an Offer you can set the price, expiration date, offer details, and a varity of additional options. A list of created Offers created can be seen from within your Organization Dashboard.
+  An offer can be generated manually from the Organization Dashboard or dynamically using one of our SDK's. Transactions are processed against offers. An offer can be tied to an @Pay 2-Click Button, a Payment Capture Page, an @Pay Invoice or even a QR code. When an offer is created, an @Pay Mailto is generated. When configuring an Offer you can set the price, expiration date, offer details, and a variety of additional options. A list of created Offers created can be seen from within your Organization Dashboard.
 
 %p
   %strong
     @Pay Token -
-  A tokenized representation of a customer's payment method. These can be safely stored and used to process transactions with the JavaScript SDK and generate offers tied to that speficic @Pay Token.
+  A tokenized representation of a customer's payment method. These can be safely stored and used to process transactions with the JavaScript SDK and generate offers tied to that specific @Pay Token.
 
 %p
   %strong
     Authorized Domain -
-  This is set in the Organization Dashboard in API settings. The Authorized Domain is one of the mechanisms used to verify and authorize the use of our Javascript SDK. This is set to the URL of the application that is being integrated.
+  This is set in the Organization Dashboard in API settings. The Authorized Domain is one of the mechanisms used to verify and authorize the use of our JavaScript SDK. This is set to the URL of the application that is being integrated.
 
 %p
   %strong
@@ -61,9 +61,9 @@ title: "@Pay | Developer Docs"
 %p
   %strong
     Payment Capture Page -
-  A webpage that captures a customer's payment details. A customer will only need fill out a Payment Capture Page once, and then they are 2-Click Enabled. If an offer is attempted by a new customer, they will receive a FAR email with a link to the Payment Capture Page. @Pay will dynamically create a Payment Capture Page for each of your offers, or you can configure and use your own payment form (that utilizes our Javascript SDK).
+  A webpage that captures a customer's payment details. A customer will only need fill out a Payment Capture Page once, and then they are 2-Click Enabled. If a new customer attempts an offer, they will receive a FAR email with a link to the Payment Capture Page. @Pay will dynamically create a Payment Capture Page for each of your offers, or you can configure and use your own payment form (that utilizes our JavaScript SDK).
 
 %p
   %strong
     FAR (Further Action Required) -
-  If a transaction is submitted by a customer and @Pay needs further details, the transaction will be marked as FAR. By default @Pay will send an email specifiying what is required. A customer will receiver a FAR message if they are attempting to make a payment with your organization for the first time. On rare occasions, a FAR will also be generated to authenticate the transaction if certain security checks aren't met.
+  If a customer submits a transaction and @Pay needs further details, the transaction will be marked as FAR. By default @Pay will send an email specifying what is required. A customer will receive a FAR message if they are attempting to make a payment with your organization for the first time. On rare occasions, a FAR will also be generated to authenticate the transaction if certain security checks aren't met.
