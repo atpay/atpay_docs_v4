@@ -12,11 +12,14 @@
         %link{:href => 'http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic', :rel=>'stylesheet', :type=> 'text/css'}
   %body{:class => page_classes}
 
-    #header
-      %h1.logo
+    #header{}
+      %h1.logo{style:"float:left;"}
         =image_tag 'atpay_logo.png'
         %span
           Platform Documentation
+
+      %h1.logo{style:"float:right; text-align: right; padding-right:40px;font-size:30px; font-style: italic;"}
+        %span v4
     #body
       #sidebar
         .content
