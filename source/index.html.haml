@@ -4,7 +4,7 @@ title: "@Pay | Developer Docs"
 
 %h1.title @Pay 101
 
-%p.desc @Pay offers a suite of tools that developers can use to integrate our 2-click payment platform with any application. With an implementation of our v4 APIs, your organization can create offers, send invoices, register payment methods, receive transaction information & more!
+%p.desc @Pay offers a suite of tools that developers can use to integrate our 2-click payment platform with any application. With the implementation of our v4 APIs, your organization can create offers, send invoices, register payment methods, receive transaction information & more!
 
 %hr
 
@@ -21,12 +21,12 @@ title: "@Pay | Developer Docs"
 %p
   %strong
     @Pay 2-Click Button -
-  A mobile and platform optimized HTML button that is placed into an email campaign or mobile webpage. These link out to an @Pay Mailto or directly to a payment capture page. @Pay 2-Click Buttons are generally created and available when an Offer is generated.
+  A mobile and platform optimized HTML button that is placed into an email campaign or mobile webpage. These link out to an @Pay Mailto or directly to a payment capture page. @Pay 2-Click Buttons are generally created and available when an offer is generated.
 
 %p
   %strong
     @Pay Hooks -
-  We offer four types of hooks - 'Pre-Sale', 'Transaction', 'Error' & 'Further Action Required'. Depending on the hook type, these will send information to your application when specific events occur during a transaction.
+  We offer four types of hooks: 'Pre-Sale', 'Transaction', 'Error' & 'Further Action Required'. Depending on the hook type, these will send information to your application when specific events occur during a transaction.
 
 %p
   %strong
@@ -56,12 +56,12 @@ title: "@Pay | Developer Docs"
 %p
   %strong
     Gateway -
-  @Pay connects with a variety of different Gateways or payment processors. Every Organization is provided with a "Test" gateway for development purposes. Gateways are added in the Organization Dashboard. An Offer can be tied to a specific gateway when being created or the default gateway at the time of Offer creation will be used. A list of compatibly gateways can be viewed #{link_to "here", "http://www.atpay.com/features/compatibility/"}.
+  @Pay connects with a variety of different Gateways or payment processors. Every organization is provided with a "Test" gateway for development purposes. Gateways are added in the Organization Dashboard. An offer can be tied to a specific gateway when being created. If a specific gateway is not selected, the default gateway will be used. A list of compatibly gateways can be viewed #{link_to "here", "http://www.atpay.com/features/compatibility/"}.
 
 %p
   %strong
     Payment Capture Page -
-  A webpage that captures a customer's payment details. A customer will only need fill out a Payment Capture Page once, and then they are 2-Click Enabled. If a new customer attempts an offer, they will receive a FAR email with a link to the Payment Capture Page. @Pay will dynamically create a Payment Capture Page for each of your offers, or you can configure and use your own payment form (that utilizes our JavaScript SDK).
+  A webpage that captures a customer's payment details. A customer will only need fill out a Payment Capture Page once, and then they are 2-Click Enabled. When a new customer attempts an offer, they will receive a FAR (Further Action Required) email with a link to the Payment Capture Page. @Pay will dynamically create a Payment Capture Page for each of your offers, or you can configure and use your own payment form (that utilizes our JavaScript SDK).
 
 %p
   %strong
