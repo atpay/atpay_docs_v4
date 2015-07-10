@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<!-- Always force latest IE rendering engine or request Chrome Frame -->
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<!-- Use title if it's in the page YAML frontmatter -->
+<title>@Pay | Developer Docs</title>
+<link href="../stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="../stylesheets/all.css" rel="stylesheet" type="text/css" />
+<script src="../javascripts/jquery.min.js" type="text/javascript"></script><script src="../javascripts/all.js" type="text/javascript"></script>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic' rel='stylesheet' type='text/css'>
+</meta>
+</meta>
+</head>
+<body class='javascript_sdk javascript_sdk_offer'>
+<div id='header'>
+<h1 class='logo' style='float:left;'>
+<img src="../images/atpay_logo.png" />
+<span>
+Platform Documentation
+</span>
+</h1>
+<h1 class='logo' style='float:right; text-align: right; padding-right:40px;font-size:30px; font-style: italic;'>
+<span>v4</span>
+</h1>
+</div>
+<div id='body'>
+<div id='sidebar'>
+<div class='content'>
+<ul id='main_nav'>
+<li>
+<a class="" href="#">@Pay 101</a>
+<ul>
+<li><a class="" href="/">Things To Know</a></li>
+<li><a class="" href="/getting_started/dashboard.html">Your Organization's Dashboard</a></li>
+<li><a class="" href="/getting_started/receipts.html">Configure Receipts & Messaging</a></li>
+<li><a class="" href="/getting_started/gateways.html">Manage Gateways</a></li>
+<li><a class="" href="/getting_started/api_config.html">Configure API Access</a></li>
+<li><a class="" href="/getting_started/testing.html">Test Gateway & Cards</a></li>
+<li><a class="" href="/getting_started/customers.html">Customers & List Segmentation</a></li>
+</ul>
+</li>
+<li>
+<a class="" href="#">JavaScript SDK</a>
+<ul>
+<li><a class="" href="/javascript_sdk/intro.html">Intro & Configuration</a></li>
+<li><a class="" href="/javascript_sdk/register.html">Register Payment Methods</a></li>
+<li><a class="" href="/javascript_sdk/process.html">Process Transactions</a></li>
+<li><a class=" active" href="/javascript_sdk/offer.html">Generate Offer</a></li>
+</ul>
+</li>
+<li>
+<a class="" href="#">Web Hooks</a>
+<ul>
+<li><a class="" href="/hook_config.html">Configuration</a></li>
+<li><a class="" href="/hooks.html">Hooks & Responses</a></li>
+</ul>
+</li>
+<li>
+<a class="" href="#">More API Wrappers</a>
+<ul>
+<li><a class="" href="https://github.com/atpay/atpay_ruby/">Ruby SDK</a></li>
+<li><a class="" href="https://github.com/atpay/atpay_php/">PHP SDK</a></li>
+</ul>
+</li>
+<li><a class="" href="http://developer.atpay.com/">Legacy Documentation</a></li>
+</ul>
+</div>
+</div>
+<div id='content'>
+<div class='content'>
+<h1 class='title'>JavaScript SDK || Generate an @Pay Offer</h1>
+<p class='desc'>Creates an @Pay offer</p>
+<hr>
+<div class='section'>
+<h2 class='title'>Description</h2>
+<p>The offer call uses a provided name, description, amount and other arguments to create an @Pay offer.</p>
+<div class='tabs refblock'>
+<h3 class='tab_title'><span><strong>atpay.offer(amount, title, options, callback)</strong></span></h3>
+<ul class='lang-nav'>
+<li class='TabA'>
+<a href='#TabA'>Example</a>
+</li>
+<li class='TabB active'>
+<a href='#TabB'>Arguments</a>
+</li>
+<li class='TabC active'>
+<a href='#TabC'>Response</a>
+</li>
+</ul>
+<div class='tab_cont first' id='TabA' style='display: none;'>
+<div class="highlight html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1&#x000A;2&#x000A;3&#x000A;4&#x000A;5&#x000A;6&#x000A;7&#x000A;8&#x000A;9&#x000A;10&#x000A;11&#x000A;12&#x000A;13</pre></td><td class="code"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>&#x000A;      <span class="nx">$</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>&#x000A;          <span class="nx">atpay</span><span class="p">.</span><span class="nx">offer</span><span class="p">({</span>&#x000A;            <span class="na">amount</span><span class="p">:</span> <span class="mf">25.00</span><span class="p">,</span>&#x000A;            <span class="na">title</span><span class="p">:</span> <span class="s2">"Donate $25.00"</span><span class="p">,</span>&#x000A;            <span class="na">description</span><span class="p">:</span> <span class="s2">"A brief description"</span>&#x000A;            <span class="na">expiration</span><span class="p">:</span> <span class="mi">365</span><span class="p">,</span>&#x000A;            <span class="na">requires_shipping_address</span><span class="p">:</span> <span class="kc">true</span>&#x000A;          <span class="p">},</span>  <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span>&#x000A;            <span class="c1">// do something cool</span>&#x000A;          <span class="p">});</span>&#x000A;      <span class="p">});</span>&#x000A;<span class="nt">&lt;/script&gt;</span></pre></td></tr></tbody></table>
+</div>
+</div>
+<div class='tab_cont' id='TabB' style='display: block;'>
+<table class='args'>
+<thead>
+<tr>
+<th style='text-align: left'>Attribute</th>
+<th style='text-align: left'>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style='text-align: left'>options</td>
+<td style='text-align: left'>A Javascript Object with additional parameters. See options table below.</td>
+</tr>
+<tr>
+<td style='text-align: left'>callback</td>
+<td style='text-align: left'>A Javascript Object with additional parameters, ‘card’ is a required value, and ‘referrer_context’ is a value you wish to store with the transaction data</td>
+<table class='args' style='margin-top:20px;'>
+<thead>
+<tr>
+<th style='text-align: left'>Option</th>
+<th style='text-align: left'>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style='text-align: left'>amount</td>
+<td style='text-align: left'>A numeric amount of the transaction in dollars</td>
+</tr>
+<tr>
+<td style='text-align: left'>title</td>
+<td style='text-align: left'>A function to call when the sale has succeeded or failed.</td>
+</tr>
+<tr>
+<td style='text-align: left'>desctription</td>
+<td style='text-align: left'>A string value that sets the details or description of generated Offer</td>
+</tr>
+<tr>
+<td style='text-align: left'>gateway</td>
+<td style='text-align: left'>The Gateway SID you would like to assign to the Offer. Use "test_gatway" for a test Offer. If not set, the Organization's default Gateway will be used.</td>
+</tr>
+<tr>
+<td style='text-align: left'>expiration</td>
+<td style='text-align: left'>The number of days the Offer will expire after generated.</td>
+</tr>
+<tr>
+<td style='text-align: left'>payment_capture_page_url</td>
+<td style='text-align: left'>A valid url that will be used for a custom Payment Capture Page.</td>
+</tr>
+<tr>
+<td style='text-align: left'>requires_shipping_address</td>
+<td style='text-align: left'>A boolean value that sets whether or not to require shipping info</td>
+</tr>
+<tr>
+<td style='text-align: left'>requires_billing_address</td>
+<td style='text-align: left'>A boolean value that sets whether or not to require billing info</td>
+</tr>
+<tr>
+<td style='text-align: left'>request_custom_data</td>
+<td style='text-align: left'>A JS object containing ‘name’ and ‘required’ that will generate custom fields if using the hosted payment page. ex {name:”custom_field”, required: true}</td>
+</tr>
+</tbody>
+</table>
+</tr>
+</tbody>
+</table>
+</div>
+<div class='tab_cont' id='TabC' style='display: block;'>
+<p>On a transaction success, you will receive the following information in the response argument to your callback function.</p>
+<div class="highlight javascript"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1&#x000A;2&#x000A;3&#x000A;4&#x000A;5&#x000A;6&#x000A;7&#x000A;8&#x000A;9&#x000A;10</pre></td><td class="code"><pre>  <span class="p">{</span>&#x000A;    <span class="nl">id</span><span class="p">:</span>   <span class="s2">"950F68EF-C0FD-4679-83E1-119F43F867BF"</span><span class="p">,</span>&#x000A;    <span class="nx">title</span><span class="err">:</span>   <span class="s2">"Donate $25.00"</span><span class="p">,</span>&#x000A;    <span class="nx">amount</span><span class="err">:</span> <span class="mf">25.00</span><span class="p">,</span>&#x000A;    <span class="nx">mail_to</span><span class="err">:</span>  <span class="s2">"mailto:payment-id-950F68EF-C0FD-4679-83E1-119F43F867BF@payments.atpay.com?subject=Press%20..."</span><span class="p">.</span>&#x000A;    <span class="nl">payment_capture_page</span><span class="p">:</span>  <span class="s2">"http://test_organization.atpay.com/950F68EF-C0FD-4679-83E1-119F43F867BF"</span><span class="p">,</span>&#x000A;    <span class="nx">qr_code</span><span class="err">:</span> <span class="s2">"https://dashboard.atpay.com/offers/950F68EF-C0FD-4679-83E1-119F43F867BF.png"</span>&#x000A;    <span class="nl">button_html</span><span class="p">:</span> <span class="s2">" &lt;!— begin @Pay button —&gt;...."</span><span class="p">,</span>&#x000A;    <span class="nx">created_at</span><span class="err">:</span> <span class="s2">"2013-03-15T14:19:35-06:00"</span>&#x000A;  <span class="p">}</span></pre></td></tr></tbody></table>
+</div>
+<table class='args' style='margin-top:10px;'>
+<thead>
+<tr>
+<th style='text-align: left'>Attribute</th>
+<th style='text-align: left'>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style='text-align: left'>id</td>
+<td style='text-align: left'>The @Pay identifier for this Offer</td>
+</tr>
+<tr>
+<td style='text-align: left'>title</td>
+<td style='text-align: left'>The name of the Offer</td>
+</tr>
+<tr>
+<td style='text-align: left'>amount</td>
+<td style='text-align: left'>The amount of the Offer in dollars</td>
+</tr>
+<tr>
+<td style='text-align: left'>mail_to</td>
+<td style='text-align: left'>The @Pay Mailto Link associated with the Offer</td>
+</tr>
+<tr>
+<td style='text-align: left'>payment_capture_page</td>
+<td style='text-align: left'>The url to the Payment Capture Page for the Offer</td>
+</tr>
+<tr>
+<td style='text-align: left'>qr_code</td>
+<td style='text-align: left'>The url for the @Pay QR image associated with the Offer</td>
+</tr>
+<tr>
+<td style='text-align: left'>button_html</td>
+<td style='text-align: left'>The markup for the @Pay Button associated with the Offer</td>
+</tr>
+<tr>
+<td style='text-align: left'>created_at</td>
+<td style='text-align: left'>The timestamp when the transaction was updated</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+<div class='clear'></div>
+</div>
+<div id='footer'></div>
+</body>
+</html>

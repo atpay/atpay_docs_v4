@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<!-- Always force latest IE rendering engine or request Chrome Frame -->
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<!-- Use title if it's in the page YAML frontmatter -->
+<title>@Pay | Developer Docs</title>
+<link href="../stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="../stylesheets/all.css" rel="stylesheet" type="text/css" />
+<script src="../javascripts/jquery.min.js" type="text/javascript"></script><script src="../javascripts/all.js" type="text/javascript"></script>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic' rel='stylesheet' type='text/css'>
+</meta>
+</meta>
+</head>
+<body class='javascript_sdk javascript_sdk_register'>
+<div id='header'>
+<h1 class='logo' style='float:left;'>
+<img src="../images/atpay_logo.png" />
+<span>
+Platform Documentation
+</span>
+</h1>
+<h1 class='logo' style='float:right; text-align: right; padding-right:40px;font-size:30px; font-style: italic;'>
+<span>v4</span>
+</h1>
+</div>
+<div id='body'>
+<div id='sidebar'>
+<div class='content'>
+<ul id='main_nav'>
+<li>
+<a class="" href="#">@Pay 101</a>
+<ul>
+<li><a class="" href="/">Things To Know</a></li>
+<li><a class="" href="/getting_started/dashboard.html">Your Organization's Dashboard</a></li>
+<li><a class="" href="/getting_started/receipts.html">Configure Receipts & Messaging</a></li>
+<li><a class="" href="/getting_started/gateways.html">Manage Gateways</a></li>
+<li><a class="" href="/getting_started/api_config.html">Configure API Access</a></li>
+<li><a class="" href="/getting_started/testing.html">Test Gateway & Cards</a></li>
+<li><a class="" href="/getting_started/customers.html">Customers & List Segmentation</a></li>
+</ul>
+</li>
+<li>
+<a class="" href="#">JavaScript SDK</a>
+<ul>
+<li><a class="" href="/javascript_sdk/intro.html">Intro & Configuration</a></li>
+<li><a class=" active" href="/javascript_sdk/register.html">Register Payment Methods</a></li>
+<li><a class="" href="/javascript_sdk/process.html">Process Transactions</a></li>
+<li><a class="" href="/javascript_sdk/offer.html">Generate Offer</a></li>
+</ul>
+</li>
+<li>
+<a class="" href="#">Web Hooks</a>
+<ul>
+<li><a class="" href="/hook_config.html">Configuration</a></li>
+<li><a class="" href="/hooks.html">Hooks & Responses</a></li>
+</ul>
+</li>
+<li>
+<a class="" href="#">More API Wrappers</a>
+<ul>
+<li><a class="" href="https://github.com/atpay/atpay_ruby/">Ruby SDK</a></li>
+<li><a class="" href="https://github.com/atpay/atpay_php/">PHP SDK</a></li>
+</ul>
+</li>
+<li><a class="" href="http://developer.atpay.com/">Legacy Documentation</a></li>
+</ul>
+</div>
+</div>
+<div id='content'>
+<div class='content'>
+<h1 class='title'>JavaScript SDK || Payment Method Registration</h1>
+<p class='desc'>Register a new card for use. If this is the initial registration of a card, it is possible to optionally create a transaction on behalf of that Customer.</p>
+<hr>
+<div class='section'>
+<h2 class='title'>Description</h2>
+<p>Creates a new credit card record with @Pay and provides a token which can be used for future transactions against it. If the form contains a field called ‘amount’, @Pay will also process a transaction for this amount.</p>
+<div class='tabs refblock'>
+<h3 class='tab_title'><span><strong>atpay.register(form object, callback)</strong></span></h3>
+<ul class='lang-nav'>
+<li class='TabA'>
+<a href='#TabA'>Example</a>
+</li>
+<li class='TabB active'>
+<a href='#TabB'>Arguments</a>
+</li>
+<li class='TabC active'>
+<a href='#TabC'>Response</a>
+</li>
+</ul>
+<div class='tab_cont first' id='TabA' style='display: none;'>
+<div class="highlight html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1&#x000A;2&#x000A;3&#x000A;4&#x000A;5&#x000A;6&#x000A;7&#x000A;8&#x000A;9&#x000A;10&#x000A;11&#x000A;12&#x000A;13&#x000A;14&#x000A;15&#x000A;16&#x000A;17&#x000A;18&#x000A;19&#x000A;20&#x000A;21&#x000A;22&#x000A;23</pre></td><td class="code"><pre><span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>&#x000A;&#x000A;   <span class="c1">// For initial registration.</span>&#x000A;   <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>&#x000A;       <span class="nx">$</span><span class="p">(</span><span class="s2">"#form-id"</span><span class="p">).</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>&#x000A;          <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>&#x000A;          <span class="nx">atpay</span><span class="p">.</span><span class="nx">register</span><span class="p">(</span><span class="s2">"#form-id"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span>&#x000A;            <span class="c1">// validate response</span>&#x000A;          <span class="p">});</span>&#x000A;       <span class="p">});</span>&#x000A;    <span class="p">});</span>&#x000A;&#x000A;   <span class="c1">// For updating a registered card.</span>&#x000A;   <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>&#x000A;       <span class="nx">$</span><span class="p">(</span><span class="s2">"#form-id"</span><span class="p">).</span><span class="nx">submit</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>&#x000A;          <span class="nx">e</span><span class="p">.</span><span class="nx">preventDefault</span><span class="p">();</span>&#x000A;          <span class="nx">atpay</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="s2">"#form-id"</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span>&#x000A;            <span class="c1">// validate response</span>&#x000A;          <span class="p">})</span>&#x000A;       <span class="p">});</span>&#x000A;    <span class="p">});</span>&#x000A;&#x000A;<span class="nt">&lt;/script&gt;</span></pre></td></tr></tbody></table>
+</div>
+</div>
+<div class='tab_cont' id='TabB' style='display: block;'>
+<table class='args'>
+<thead>
+<tr>
+<th style='text-align: left'>Attribute</th>
+<th style='text-align: left'>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style='text-align: left'>form object</td>
+<td style='text-align: left'>The form element on your page that accepts card information, or a javascript object containing the card details by name</td>
+</tr>
+<tr>
+<td style='text-align: left'>callback</td>
+<td style='text-align: left'>Function to call when the card registration fails or succeeds</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class='tab_cont' id='TabC' style='display: block;'>
+<p>After a card has been successfully registered, you will receive the following information in the response argument to your callback function.</p>
+<div class="highlight javascript"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1&#x000A;2&#x000A;3&#x000A;4&#x000A;5&#x000A;6&#x000A;7&#x000A;8&#x000A;9&#x000A;10&#x000A;11&#x000A;12&#x000A;13</pre></td><td class="code"><pre><span class="p">{</span>&#x000A;  <span class="nl">atpay_token</span><span class="p">:</span>               <span class="s2">"XYZ"</span><span class="p">,</span>&#x000A;  <span class="nx">message</span><span class="err">:</span>                       <span class="s2">"registration_response"</span><span class="p">,</span>&#x000A;  <span class="nx">referrer_context</span><span class="err">:</span>     <span class="s2">"sku-11"</span><span class="p">,</span>&#x000A;  <span class="nx">signature</span><span class="err">:</span>                     <span class="s2">"a5ac216fd6d43c424da4e743291ac01e87b9a414"</span><span class="p">,</span>&#x000A;  <span class="nx">transaction</span><span class="err">:</span>                <span class="p">{</span>&#x000A;        <span class="nl">balance</span><span class="p">:</span>                          <span class="s2">"40.0"</span><span class="p">,</span>&#x000A;        <span class="nx">created_at</span><span class="err">:</span>                    <span class="s2">"2013-08-12 00:00:00 -0600"</span><span class="p">,</span>&#x000A;        <span class="nx">fee</span><span class="err">:</span>                                    <span class="s2">"0.0"</span><span class="p">,</span>&#x000A;        <span class="nx">id</span><span class="err">:</span>                                       <span class="s2">"XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"</span><span class="p">,</span>&#x000A;        <span class="nx">signature</span><span class="err">:</span>                      <span class="s2">"b6bd327ge7e53c424da4e33256adccf82lsla1xy"</span>&#x000A;                                               <span class="p">}</span>&#x000A;<span class="p">}</span></pre></td></tr></tbody></table>
+</div>
+<table class='args' style='margin-top:10px;'>
+<thead>
+<tr>
+<th style='text-align: left'>Attribute</th>
+<th style='text-align: left'>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style='text-align: left'>atpay_token</td>
+<td style='text-align: left'>The reference used to charge this card in the future. You should store this value safely on your server</td>
+</tr>
+<tr>
+<td style='text-align: left'>message</td>
+<td style='text-align: left'>The response type</td>
+</tr>
+<tr>
+<td style='text-align: left'>referrer_context</td>
+<td style='text-align: left'>The value you passed through the registration process</td>
+</tr>
+<tr>
+<td style='text-align: left'>signature</td>
+<td style='text-align: left'>Can be used to verify responses are valid</td>
+</tr>
+<tr>
+<td style='text-align: left'>transaction</td>
+<td style='text-align: left'>If you specified an amount, the corresponding transaction details</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h2 class='title'>The Registration Form</h2>
+<p>The form you implement to accept credit card information is hosted on your site. @Pay’s SDK will wrap your form submission process to first post sensitive information to our PCI compliant servers, and then remove that information from your form so you can submit it to your server:</p>
+<ol style='margin-left:50px; margin-bottom:40px;'>
+<li>Your customer visits a page on your site with an @Pay enabled form.</li>
+<li>Your customer enters credit card information and billing information into this form.</li>
+<li>Upon submission, @Pay submits the credit card and billing information to our servers.</li>
+<li>If the transaction is successful, we append a card reference token to your form.</li>
+<li>We remove the sensitive information (fields marked with ‘atpay-data-protected’)</li>
+<li>Your form submission process carries on as normal, without the sensitive information.</li>
+</ol>
+<p>Since @Pay’s SDK is designed to work with your existing forms, we understand that the names of your fields may differ from @Pay’s expectations. Instead of using the name attribute, @Pay’s SDK uses the data-atpay attribute to determine the name of a field.</p>
+<p>
+<strong style='font-weight:900;'>data-atpay-protected -</strong>
+Any input field without a name attribute is not submitted to your server when a customer clicks ‘Submit’, but as an additional safeguard, adding the data-atpay-protected attribute will ensure that @Pay’s SDK removes the form element prior to submission.
+<h2 class='title'>Example Form</h2>
+<div class="highlight html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1&#x000A;2&#x000A;3&#x000A;4&#x000A;5&#x000A;6&#x000A;7&#x000A;8&#x000A;9&#x000A;10&#x000A;11&#x000A;12&#x000A;13&#x000A;14&#x000A;15&#x000A;16&#x000A;17&#x000A;18&#x000A;19&#x000A;20&#x000A;21&#x000A;22</pre></td><td class="code"><pre><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">"/submit"</span> <span class="na">method=</span><span class="s">"POST"</span> <span class="na">id=</span><span class="s">"registration-form"</span><span class="nt">&gt;</span>&#x000A;  <span class="c">&lt;!-- phone number is passed to @Pay as 'phone', and to your server as 'phone_number' --&gt;</span>&#x000A;  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"phone_number"</span> <span class="na">data-atpay=</span><span class="s">"phone"</span> <span class="nt">/&gt;</span>&#x000A;&#x000A;  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"first"</span> <span class="na">data-atpay=</span><span class="s">"first_name"</span> <span class="nt">/&gt;</span>&#x000A;  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"last"</span> <span class="na">data-atpay=</span><span class="s">"last_name"</span> <span class="nt">/&gt;</span>&#x000A;  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"email"</span> <span class="na">data-atpay=</span><span class="s">"email"</span> <span class="nt">/&gt;</span>&#x000A;  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"street"</span> <span class="na">data-atpay=</span><span class="s">"street"</span> <span class="nt">/&gt;</span>&#x000A;  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"city"</span> <span class="na">data-atpay=</span><span class="s">"city"</span> <span class="nt">/&gt;</span>&#x000A;  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"state"</span> <span class="na">data-atpay=</span><span class="s">"state"</span> <span class="nt">/&gt;</span>&#x000A;  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"zip"</span> <span class="na">data-atpay=</span><span class="s">"zip"</span> <span class="nt">/&gt;</span>&#x000A;  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"country"</span> <span class="na">data-atpay=</span><span class="s">"country"</span> <span class="na">value=</span><span class="s">"United States"</span> <span class="nt">/&gt;</span>&#x000A;  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">name=</span><span class="s">"phone"</span> <span class="na">data-atpay=</span><span class="s">"phone"</span> <span class="nt">/&gt;</span>&#x000A;&#x000A;  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">data-atpay=</span><span class="s">"card_number"</span> <span class="na">data-atpay-protected=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>&#x000A;  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">data-atpay=</span><span class="s">"card_type"</span> <span class="nt">/&gt;</span>&#x000A;  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">data-atpay=</span><span class="s">"exp_month"</span> <span class="nt">/&gt;</span>&#x000A;  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">data-atpay=</span><span class="s">"exp_year"</span> <span class="nt">/&gt;</span>&#x000A;  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">data-atpay=</span><span class="s">"cvc"</span> <span class="na">data-atpay-protected=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>&#x000A;&#x000A;  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="nt">/&gt;</span>&#x000A;<span class="nt">&lt;/form&gt;</span></pre></td></tr></tbody></table>
+</div>
+</p>
+</div>
+
+</div>
+</div>
+<div class='clear'></div>
+</div>
+<div id='footer'></div>
+</body>
+</html>
