@@ -1,0 +1,34 @@
+---
+title: "@Pay | Developer Docs"
+---
+
+
+
+%h1.title 2click.js || Installation
+
+%p.desc @Pay's 2click.js allows you to generate mobile web payment buttons and @Pay-enable your existing payment forms.
+
+%hr
+
+%h2.title Supported Browsers
+%p In order to accept payments or register cards successfully with the @Pay JavaScript SDK, your Customer must be using IE8+, Chrome, Firefox 3+, or Safari 5.1+ (OSX / iOS) and must have Javascript enabled.
+
+.section#configuration
+  %h2.title Installation
+  %p 2click.js is installed by placing the following code snippet into your web page and replacing 'org_xyz' with your @Pay ID (obtained from your @Pay dashboard).
+  %p{style: "margin-bottom: 60px;"} jQuery 1.9.1 is included because 2click.js requires jQuery version 1.9.1 or higher. If you already have jQuery on your webpage, skip the first line of the code snippet.
+
+  .tabs.refblock
+    .tab_cont.first
+      :code
+        # lang: html
+          <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+          <script type="text/javascript" src="https://dashboard.atpay.com/api/v4/js/atpay.js"></script>
+          <script type="text/javascript">
+                  $(function( ){
+                        atpay.config( {
+                          organization_sid:    "org_xyz"
+                        } );
+                  });
+          </script>          
+

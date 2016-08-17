@@ -4,28 +4,11 @@ title: "@Pay | Developer Docs"
 
 
 
-%h1.title JavaScript SDK || Introduction & Configuration
+%h1.title 2click.js || API Reference
 
-%p.desc The @Pay JavaScript SDK allows you to safely register @Pay accounts, tokenize Credit Card records and run Transactions.
+%p.desc Once 2click.js is installed on a webpage, an 'atpay' object becomes available. The page lists all the methods available on 'atpay' object and how they can be used.
 
 %hr
-
-%h2.title Supported Browsers
-%p In order to accept payments or register cards successfully with the @Pay JavaScript SDK, your Customer must be using IE8+, Chrome, Firefox 3+, or Safari 5.1+ (OSX / iOS) and must have Javascript enabled.
-
-.section#configuration
-  %h2.title Installation
-  %p The SDK is loaded by placing the script element at the end of the body element. (Please load jQuery (>= 1.9.1) independently of the SDK.)
-
-  .tabs.refblock
-    .tab_cont.first
-      :code
-        # lang: html
-          <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-          <script type="text/javascript" src="https://dashboard.atpay.com/api/v4/js/atpay.js"></script>
-  %h2.title Configuration
-  %p The SDK is loaded by placing the script element at the end of the body element. (Please load jQuery (>= 1.9.1) independently of the SDK)
-
 
   .tabs.refblock
     %h3.tab_title <span><strong>atpay.config(settings)</strong></span>
