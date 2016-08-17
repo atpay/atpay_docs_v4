@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<!-- Always force latest IE rendering engine or request Chrome Frame -->
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<!-- Use title if it's in the page YAML frontmatter -->
+<title>@Pay | Developer Docs</title>
+<link href="../stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="../stylesheets/all.css" rel="stylesheet" type="text/css" />
+<script src="../javascripts/jquery.min.js" type="text/javascript"></script><script src="../javascripts/all.js" type="text/javascript"></script>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic' rel='stylesheet' type='text/css'>
+</meta>
+</meta>
+</head>
+<body class='restful_api restful_api_transaction_reporting'>
+<div id='header'>
+<h1 class='logo' style='float:left;'>
+<img src="../images/atpay_logo.png" />
+<span>
+Platform Documentation
+</span>
+</h1>
+<h1 class='logo' style='float:right; text-align: right; padding-right:40px;font-size:30px; font-style: italic;'>
+<span>v4</span>
+</h1>
+</div>
+<div id='body'>
+<div id='sidebar'>
+<div class='content'>
+<ul id='main_nav'>
+<li>
+<a class="" href="#">@Pay 101</a>
+<ul>
+<li><a class="" href="/">Things To Know</a></li>
+<li><a class="" href="/getting_started/dashboard.html">Your Organization's Dashboard</a></li>
+<li><a class="" href="/getting_started/receipts.html">Configure Receipts & Messaging</a></li>
+<li><a class="" href="/getting_started/gateways.html">Manage Gateways</a></li>
+<li><a class="" href="/getting_started/api_config.html">Configure API Access</a></li>
+<li><a class="" href="/getting_started/testing.html">Test Gateway & Cards</a></li>
+<li><a class="" href="/getting_started/customers.html">Customers & List Segmentation</a></li>
+</ul>
+</li>
+<li>
+<a class="" href="#">2click.js</a>
+<ul>
+<li><a class="" href="/2click_js/installation.html">Installation</a></li>
+<li><a class="" href="/2click_js/register.html">Register Payment Methods</a></li>
+<li><a class="" href="/2click_js/process.html">Process Transactions</a></li>
+<li><a class="" href="/2click_js/offer.html">Generate Offer</a></li>
+<li><a class="" href="/2click_js/api.html">API Reference</a></li>
+</ul>
+</li>
+<li>
+<a class="" href="#">Web Hooks</a>
+<ul>
+<li><a class="" href="/hook_config.html">Configuration</a></li>
+<li><a class="" href="/hooks.html">Hooks & Responses</a></li>
+</ul>
+</li>
+<li>
+<a class="" href="#">RESTful API</a>
+<ul>
+<li><a class=" active" href="/restful_api/transaction_reporting.html">Transaction Reporting</a></li>
+</ul>
+</li>
+<li>
+<a class="" href="#">More API Wrappers</a>
+<ul>
+<li><a class="" href="https://github.com/atpay/atpay_ruby/">Ruby SDK</a></li>
+<li><a class="" href="https://github.com/atpay/atpay_php/">PHP SDK</a></li>
+</ul>
+</li>
+<li><a class="" href="http://developer.atpay.com/">Legacy Documentation</a></li>
+</ul>
+</div>
+</div>
+<div id='content'>
+<div class='content'>
+<h1 class='title'>RESTful API || Transaction Reporting</h1>
+<p class='desc'>The Transaction Reporting endpoint of the @Pay RESTful API allows you to retrieve information on completed transactions.</p>
+<hr>
+<div class='section' id='configuration'>
+<h2 class='title'>Authentication</h2>
+<p>Authentication is done with HTTP Token Authenication using an organization's @Pay private key. This can be found by logging into the organization's @Pay dashboard and navigating to the 'API Settings' page, which is found under 'Settings' in the main menu in the upper right of the dashboard. Also note that the private key must be <a href="https://en.wikipedia.org/wiki/Percent-encoding">percent/URL encoded</a>.</p>
+<h2 class='title'>Operations</h2>
+<p></p>
+<div class='tabs refblock'>
+<h3 class='tab_title'>Retrieve transactions</h3>
+<ul class='lang-nav'>
+<li class='TabA'>
+<a href='#TabA'>Request</a>
+</li>
+<li class='TabB'>
+<a href='#TabB'>Request Parameters</a>
+</li>
+<li class='TabC'>
+<a href='#TabC'>Response</a>
+</li>
+<li class='TabD'>
+<a href='#TabD'>Response Fields</a>
+</li>
+</ul>
+<div class='tab_cont first' id='TabA' style='display: none;'>
+<div class="highlight shell"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1&#x000A;2&#x000A;3</pre></td><td class="code"><pre>  curl -H <span class="s1">'Authorization: Token token=$ORGANIZATION_PRIVATE_KEY'</span> <span class="se">\</span>&#x000A;  https://dashboard.atpay.com/api/v4/rest/organizations/<span class="nv">$ORGANIZATION_SID</span>/<span class="se">\</span>&#x000A;  transactions?limit<span class="o">=</span><span class="nv">$LIMIT</span>&amp;after<span class="o">=</span><span class="nv">$AFTER</span></pre></td></tr></tbody></table>
+</div>
+</div>
+<div class='tab_cont' id='TabB' style='display: block;'>
+<table class='args'>
+<thead>
+<tr>
+<th style='text-align: left'>Attribute</th>
+<th style='text-align: left'>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style='text-align: left'>ORGANIZATION_PRIVATE_KEY</td>
+<td style='text-align: left'>The organization's URL encoded private key found in the organization's dashboard under 'Settings' -> 'API Settings'.</td>
+</tr>
+<tr>
+<td style='text-align: left'>ORGANIZATION_SID</td>
+<td style='text-align: left'>The SID of the organization. Found in the organization's dashboard under 'Settings' -> 'API Settings'. Should begin with 'org_'.</td>
+</tr>
+<tr>
+<td style='text-align: left'>LIMIT (optional)</td>
+<td style='text-align: left'>An integer indicating the number of transactions you'd like to retrieve. If this is not provided, all transactions will be returned.</td>
+</tr>
+<tr>
+<td style='text-align: left'>AFTER (optional)</td>
+<td style='text-align: left'>A Unix timestamp. If provided, only transactions that occurred after the timestamp will be returned.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class='tab_cont' id='TabC' style='display: none;'>
+<div class="highlight json"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1&#x000A;2&#x000A;3&#x000A;4&#x000A;5&#x000A;6&#x000A;7&#x000A;8&#x000A;9&#x000A;10&#x000A;11&#x000A;12&#x000A;13&#x000A;14</pre></td><td class="code"><pre><span class="w">  </span><span class="p">[</span><span class="w">  &#x000A;      </span><span class="err">...</span><span class="w">&#x000A;     </span><span class="p">{</span><span class="w">  &#x000A;        </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"956DB5AC-A9D5-5664-A9D2-9657926023BB"</span><span class="p">,</span><span class="w">&#x000A;        </span><span class="nt">"date"</span><span class="p">:</span><span class="s2">"2016-07-14T15:16:47-06:00"</span><span class="p">,</span><span class="w">&#x000A;        </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1440857807</span><span class="p">,</span><span class="w">&#x000A;        </span><span class="nt">"offer_name"</span><span class="p">:</span><span class="s2">"Payment of $5.00 to Your Organization"</span><span class="p">,</span><span class="w">&#x000A;        </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"donor@gmail.com"</span><span class="p">,</span><span class="w">&#x000A;        </span><span class="nt">"amount"</span><span class="p">:</span><span class="s2">"5.0"</span><span class="p">,</span><span class="w">&#x000A;        </span><span class="nt">"net_amount"</span><span class="p">:</span><span class="s2">"4.9"</span><span class="p">,</span><span class="w">&#x000A;        </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"Successful"</span><span class="w">&#x000A;     </span><span class="p">}</span><span class="w">&#x000A;     </span><span class="err">...</span><span class="w">&#x000A;  </span><span class="p">]</span><span class="w">    &#x000A;</span></pre></td></tr></tbody></table>
+</div>
+</div>
+<div class='tab_cont' id='TabD' style='display: block;'>
+<table class='args'>
+<thead>
+<tr>
+<th style='text-align: left'>Field</th>
+<th style='text-align: left'>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style='text-align: left'>id</td>
+<td style='text-align: left'>A string that uniquely identifies this transaction in @Pay's system.</td>
+</tr>
+<tr>
+<td style='text-align: left'>date</td>
+<td style='text-align: left'>A formatted timestamp of when this transaction was created.</td>
+</tr>
+<tr>
+<td style='text-align: left'>timestamp</td>
+<td style='text-align: left'>A Unix timestamp of when this transaction was created.</td>
+</tr>
+<tr>
+<td style='text-align: left'>offer_name</td>
+<td style='text-align: left'>A written description of the transaction. Often takes the format of "Payment of $X.XX to ORGANIZATION_NAME".</td>
+</tr>
+<tr>
+<td style='text-align: left'>email</td>
+<td style='text-align: left'>The email address associated with thsi transaction.</td>
+</tr>
+<tr>
+<td style='text-align: left'>amount</td>
+<td style='text-align: left'>A floating point representation of the amount of this transaction in dollars.</td>
+</tr>
+<tr>
+<td style='text-align: left'>net_amount</td>
+<td style='text-align: left'>A floating point representation of the amount of this transaction in dollars less any processing fees.</td>
+</tr>
+<tr>
+<td style='text-align: left'>status</td>
+<td style='text-align: left'>The status of this transaction. Can be either "Successful", meaning the transaction was processed without problems, "Failed", meaning we were able to process the transaction, often because of card issues (such as a decline), or "Further Action Required", meaning we required additional information to process the transaction (such as a payment method) and never received it.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h2 class='title'>Batching</h2>
+<p>Transactions are returned in ascending chronological order, so transactions can be retrieved in batches by first making a request specifying only a LIMIT parameter and then, for future transactions, specifying an AFTER paramter of n + 1, where n is the timestamp of the last transaction you have received.</p>
+<h2 class='title'>Polling</h2>
+<p>A similar method can be used for polling the API for new transactions. Simply use an AFTER parameter of n + 1, where n is the timestamp of the last transaction you have on record.</p>
+</div>
+
+</div>
+</div>
+<div class='clear'></div>
+</div>
+<div id='footer'></div>
+</body>
+</html>

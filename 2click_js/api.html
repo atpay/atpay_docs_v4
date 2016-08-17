@@ -12,7 +12,7 @@
 </meta>
 </meta>
 </head>
-<body class='javascript_sdk javascript_sdk_intro'>
+<body class='x2click_js x2click_js_api'>
 <div id='header'>
 <h1 class='logo' style='float:left;'>
 <img src="../images/atpay_logo.png" />
@@ -41,12 +41,13 @@ Platform Documentation
 </ul>
 </li>
 <li>
-<a class="" href="#">JavaScript SDK</a>
+<a class="" href="#">2click.js</a>
 <ul>
-<li><a class=" active" href="/javascript_sdk/intro.html">Intro & Configuration</a></li>
-<li><a class="" href="/javascript_sdk/register.html">Register Payment Methods</a></li>
-<li><a class="" href="/javascript_sdk/process.html">Process Transactions</a></li>
-<li><a class="" href="/javascript_sdk/offer.html">Generate Offer</a></li>
+<li><a class="" href="/2click_js/installation.html">Installation</a></li>
+<li><a class="" href="/2click_js/register.html">Register Payment Methods</a></li>
+<li><a class="" href="/2click_js/process.html">Process Transactions</a></li>
+<li><a class="" href="/2click_js/offer.html">Generate Offer</a></li>
+<li><a class=" active" href="/2click_js/api.html">API Reference</a></li>
 </ul>
 </li>
 <li>
@@ -54,6 +55,12 @@ Platform Documentation
 <ul>
 <li><a class="" href="/hook_config.html">Configuration</a></li>
 <li><a class="" href="/hooks.html">Hooks & Responses</a></li>
+</ul>
+</li>
+<li>
+<a class="" href="#">RESTful API</a>
+<ul>
+<li><a class="" href="/restful_api/transaction_reporting.html">Transaction Reporting</a></li>
 </ul>
 </li>
 <li>
@@ -69,22 +76,9 @@ Platform Documentation
 </div>
 <div id='content'>
 <div class='content'>
-<h1 class='title'>JavaScript SDK || Introduction & Configuration</h1>
-<p class='desc'>The @Pay JavaScript SDK allows you to safely register @Pay accounts, tokenize Credit Card records and run Transactions.</p>
+<h1 class='title'>2click.js || API Reference</h1>
+<p class='desc'>Once 2click.js is installed on a webpage, an 'atpay' object becomes available. The page lists all the methods available on 'atpay' object and how they can be used.</p>
 <hr>
-<h2 class='title'>Supported Browsers</h2>
-<p>In order to accept payments or register cards successfully with the @Pay JavaScript SDK, your Customer must be using IE8+, Chrome, Firefox 3+, or Safari 5.1+ (OSX / iOS) and must have Javascript enabled.</p>
-<div class='section' id='configuration'>
-<h2 class='title'>Installation</h2>
-<p>The SDK is loaded by placing the script element at the end of the body element. (Please load jQuery (>= 1.9.1) independently of the SDK.)</p>
-<div class='tabs refblock'>
-<div class='tab_cont first'>
-<div class="highlight html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1&#x000A;2</pre></td><td class="code"><pre>  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>&#x000A;  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">src=</span><span class="s">"https://dashboard.atpay.com/api/v4/atpay.js"</span><span class="nt">&gt;&lt;/script&gt;</span></pre></td></tr></tbody></table>
-</div>
-</div>
-</div>
-<h2 class='title'>Configuration</h2>
-<p>The SDK is loaded by placing the script element at the end of the body element. (Please load jQuery (>= 1.9.1) independently of the SDK)</p>
 <div class='tabs refblock'>
 <h3 class='tab_title'><span><strong>atpay.config(settings)</strong></span></h3>
 <ul class='lang-nav'>
@@ -124,7 +118,7 @@ Platform Documentation
 </table>
 </div>
 </div>
-</div>
+</hr>
 
 </div>
 </div>
