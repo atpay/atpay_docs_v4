@@ -1,0 +1,126 @@
+---
+title: "@Pay | Developer Docs"
+---
+
+
+
+%h1.title 2click.js || Add a Mobile Payment Button
+
+%p.desc A a mobile payment button or buttons to you site.
+
+
+%hr
+
+.section
+  %h2.title 
+    :escaped
+      Add Assets to <head>
+  %p 
+    :escaped 
+      First add the Javascript and CSS we'll be using to your page's <head> element.
+
+  .tabs.refblock
+    .tab_cont.first
+      :code
+        # lang: html
+          <style>
+              .lightbox {
+                  display: none;
+                  max-width:400px;
+              }
+
+              .two_click{
+                  display: block;
+                  width:88%;
+                  text-align: center;
+                  color: #ffffff;
+                  text-decoration: none;
+                  margin: 20px 0;    
+                  padding: 5px 15px 8px;
+                  background-color: #8cc953;
+              }
+
+              .two_click_wrap{
+                  display:none;
+              }  
+          </style>
+
+          <link href="//cdn.rawgit.com/noelboss/featherlight/1.4.1/release/featherlight.min.css" type="text/css" rel="stylesheet" />
+          <script src="//cdn.rawgit.com/noelboss/featherlight/1.4.1/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>         
+
+.section
+  %h2.title 
+    :escaped
+      Add HTML Elements
+
+  %p We'll start by adding the HTML for the mobile payment button. Place this right below your existing add to cart button.
+
+  .tabs.refblock
+    .tab_cont.first
+      :code
+        # lang: html
+          <div class="two_click_wrap">
+              <a href="#" class="two_click">
+                  <span class="tag">Buy in 2 clicks</span>
+                  $<span class="amount"></span>
+              </a>
+              <a href="#" data-featherlight="#whats_this">What is this?</a>
+          </div>     
+
+  %p 
+    :escaped 
+      Next, add these information elements that will be used using the checkout process anywhere with your <body> element (don't worry, they'll be hidden until we need them).
+
+  .tabs.refblock
+    .tab_cont.first
+      :code
+        # lang: html
+          <div id="whats_this" class="lightbox">
+              <p>
+                  <strong> How Does It Work?</strong><br/>
+                  Click on the 2-click button and your email app will pop up with a special email. Just hit "send" to confirm your purchase, and you're done! You will receive a receipt in your inbox.
+              </p>
+              <p>
+                  <strong> What if it's my first time using 2-click purchase?</strong><br/>
+                  No problem! You will be prompted to fill in your first and last name, primary email address, and billing information. You will only have to enter this information once. In the future, you can purchase in just two clicks.
+              </p>
+              <p>
+                  <strong> How secure is it?</strong><br/>
+                  Very! @Pay protects your personal information by utilizing methods above and beyond industry standards. All credit card information is handled under strict PCI compliance, and your full payment information is stored in an independent secure 3rd party vault, not on our servers.
+              </p>
+          </div>
+
+          <div id="thanks" class="lightbox">
+              <p>
+                  <strong>Thanks!</strong><br /><br />
+                  If you have not yet, please submit the payment email to complete your purchase. Your order will be shipped to address associated with your email address.
+                  <br/ >
+                  If you have not yet purchesed by 2-click please press checkout to complete your order. You can register for 2-click purchases by opting in during the payment process.
+              </p>
+          </div>           
+.section
+  %h2.title Generate the Button
+
+  %p Generate the mobile payment button using the Javascript below. It cues off changes to a 'submittable' class, so add that class to your form element. 
+
+  .tabs.refblock
+    .tab_cont.first
+      :code
+        # lang: html
+          <script type="text/javascript">
+              $(".submittable").change(function(){
+                  params = {
+                      amount : 1.00,
+                  }
+                  atpay.offer(params, function(response){
+                      $(".two_click span.amount").text(response.offer.amount.toFixed(2))
+                      $(".two_click").attr('href', response.offer.button.mail_to)
+                      $(".two_click_wrap").show();
+                  })
+              });
+
+              $(".two_click").click(function(){
+                      markup = $("#thanks")
+                      $.featherlight(markup);
+              });
+          </script>
