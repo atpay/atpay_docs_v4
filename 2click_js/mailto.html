@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<!-- Always force latest IE rendering engine or request Chrome Frame -->
+<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible'>
+<!-- Use title if it's in the page YAML frontmatter -->
+<title>@Pay | Developer Docs</title>
+<link href="../stylesheets/normalize.css" rel="stylesheet" type="text/css" /><link href="../stylesheets/all.css" rel="stylesheet" type="text/css" />
+<script src="../javascripts/jquery.min.js" type="text/javascript"></script><script src="../javascripts/all.js" type="text/javascript"></script>
+<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic' rel='stylesheet' type='text/css'>
+</meta>
+</meta>
+</head>
+<body class='x2click_js x2click_js_mailto'>
+<div id='header'>
+<h1 class='logo' style='float:left;'>
+<img src="../images/atpay_logo.png" />
+<span>
+Platform Documentation
+</span>
+</h1>
+<h1 class='logo' style='float:right; text-align: right; padding-right:40px;font-size:30px; font-style: italic;'>
+<span>v4</span>
+</h1>
+</div>
+<div id='body'>
+<div id='sidebar'>
+<div class='content'>
+<ul id='main_nav'>
+<li>
+<a class="" href="#">@Pay 101</a>
+<ul>
+<li><a class="" href="/">Things To Know</a></li>
+<li><a class="" href="/getting_started/dashboard.html">Your Organization's Dashboard</a></li>
+<li><a class="" href="/getting_started/receipts.html">Configure Receipts & Messaging</a></li>
+<li><a class="" href="/getting_started/gateways.html">Manage Gateways</a></li>
+<li><a class="" href="/getting_started/api_config.html">Configure API Access</a></li>
+<li><a class="" href="/getting_started/testing.html">Test Gateway & Cards</a></li>
+<li><a class="" href="/getting_started/customers.html">Customers & List Segmentation</a></li>
+</ul>
+</li>
+<li>
+<a class="" href="#">2click.js</a>
+<ul>
+<li><a class="" href="/2click_js/installation.html">Installation</a></li>
+<li><a class="" href="/2click_js/register.html">Register Payment Methods</a></li>
+<li><a class=" active" href="/2click_js/mailto.html">Mobile Payment Buttons</a></li>
+<li><a class="" href="/2click_js/process.html">Process Transactions</a></li>
+<li><a class="" href="/2click_js/api.html">API Reference</a></li>
+</ul>
+</li>
+<li>
+<a class="" href="#">Web Hooks</a>
+<ul>
+<li><a class="" href="/hook_config.html">Configuration</a></li>
+<li><a class="" href="/hooks.html">Hooks & Responses</a></li>
+</ul>
+</li>
+<li>
+<a class="" href="#">RESTful API</a>
+<ul>
+<li><a class="" href="/restful_api/transaction_reporting.html">Transaction Reporting</a></li>
+</ul>
+</li>
+<li>
+<a class="" href="#">More API Wrappers</a>
+<ul>
+<li><a class="" href="https://github.com/atpay/atpay_ruby/">Ruby SDK</a></li>
+<li><a class="" href="https://github.com/atpay/atpay_php/">PHP SDK</a></li>
+</ul>
+</li>
+<li><a class="" href="http://developer.atpay.com/">Legacy Documentation</a></li>
+</ul>
+</div>
+</div>
+<div id='content'>
+<div class='content'>
+<h1 class='title'>2click.js || Add a Mobile Payment Button</h1>
+<p class='desc'>A a mobile payment button or buttons to you site.</p>
+<hr>
+<div class='section'>
+<h2 class='title'>
+Add Assets to &lt;head&gt;
+</h2>
+<p>
+First add the Javascript and CSS we'll be using to your page's &lt;head&gt; element.
+</p>
+<div class='tabs refblock'>
+<div class='tab_cont first'>
+<div class="highlight html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1&#x000A;2&#x000A;3&#x000A;4&#x000A;5&#x000A;6&#x000A;7&#x000A;8&#x000A;9&#x000A;10&#x000A;11&#x000A;12&#x000A;13&#x000A;14&#x000A;15&#x000A;16&#x000A;17&#x000A;18&#x000A;19&#x000A;20&#x000A;21&#x000A;22&#x000A;23&#x000A;24&#x000A;25</pre></td><td class="code"><pre>  <span class="nt">&lt;style&gt;</span>&#x000A;      <span class="nc">.lightbox</span> <span class="p">{</span>&#x000A;          <span class="nl">display</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>&#x000A;          <span class="nl">max-width</span><span class="p">:</span><span class="m">400px</span><span class="p">;</span>&#x000A;      <span class="p">}</span>&#x000A;&#x000A;      <span class="nc">.two_click</span><span class="p">{</span>&#x000A;          <span class="nl">display</span><span class="p">:</span> <span class="nb">block</span><span class="p">;</span>&#x000A;          <span class="nl">width</span><span class="p">:</span><span class="m">88%</span><span class="p">;</span>&#x000A;          <span class="nl">text-align</span><span class="p">:</span> <span class="nb">center</span><span class="p">;</span>&#x000A;          <span class="nl">color</span><span class="p">:</span> <span class="m">#ffffff</span><span class="p">;</span>&#x000A;          <span class="nl">text-decoration</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>&#x000A;          <span class="nl">margin</span><span class="p">:</span> <span class="m">20px</span> <span class="m">0</span><span class="p">;</span>    &#x000A;          <span class="nl">padding</span><span class="p">:</span> <span class="m">5px</span> <span class="m">15px</span> <span class="m">8px</span><span class="p">;</span>&#x000A;          <span class="nl">background-color</span><span class="p">:</span> <span class="m">#8cc953</span><span class="p">;</span>&#x000A;      <span class="p">}</span>&#x000A;&#x000A;      <span class="nc">.two_click_wrap</span><span class="p">{</span>&#x000A;          <span class="nl">display</span><span class="p">:</span><span class="nb">none</span><span class="p">;</span>&#x000A;      <span class="p">}</span>  &#x000A;  <span class="nt">&lt;/style&gt;</span>&#x000A;&#x000A;  <span class="nt">&lt;link</span> <span class="na">href=</span><span class="s">"//cdn.rawgit.com/noelboss/featherlight/1.4.1/release/featherlight.min.css"</span> <span class="na">type=</span><span class="s">"text/css"</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="nt">/&gt;</span>&#x000A;  <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//cdn.rawgit.com/noelboss/featherlight/1.4.1/release/featherlight.min.js"</span> <span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">charset=</span><span class="s">"utf-8"</span><span class="nt">&gt;&lt;/script&gt;</span>         &#x000A;</pre></td></tr></tbody></table>
+</div>
+</div>
+</div>
+</div>
+<div class='section'>
+<h2 class='title'>
+Add HTML Elements
+</h2>
+<p>We'll start by adding the HTML for the mobile payment button. Place this right below your existing add to cart button.</p>
+<div class='tabs refblock'>
+<div class='tab_cont first'>
+<div class="highlight html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1&#x000A;2&#x000A;3&#x000A;4&#x000A;5&#x000A;6&#x000A;7&#x000A;8</pre></td><td class="code"><pre>  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"two_click_wrap"</span><span class="nt">&gt;</span>&#x000A;      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">class=</span><span class="s">"two_click"</span><span class="nt">&gt;</span>&#x000A;          <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"tag"</span><span class="nt">&gt;</span>Buy in 2 clicks<span class="nt">&lt;/span&gt;</span>&#x000A;          $<span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"amount"</span><span class="nt">&gt;&lt;/span&gt;</span>&#x000A;      <span class="nt">&lt;/a&gt;</span>&#x000A;      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"#"</span> <span class="na">data-featherlight=</span><span class="s">"#whats_this"</span><span class="nt">&gt;</span>What is this?<span class="nt">&lt;/a&gt;</span>&#x000A;  <span class="nt">&lt;/div&gt;</span>     &#x000A;</pre></td></tr></tbody></table>
+</div>
+</div>
+</div>
+<p>
+Next, add these information elements that will be used using the checkout process anywhere with your &lt;body&gt; element (don't worry, they'll be hidden until we need them).
+</p>
+<div class='tabs refblock'>
+<div class='tab_cont first'>
+<div class="highlight html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1&#x000A;2&#x000A;3&#x000A;4&#x000A;5&#x000A;6&#x000A;7&#x000A;8&#x000A;9&#x000A;10&#x000A;11&#x000A;12&#x000A;13&#x000A;14&#x000A;15&#x000A;16&#x000A;17&#x000A;18&#x000A;19&#x000A;20&#x000A;21&#x000A;22&#x000A;23</pre></td><td class="code"><pre>  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"whats_this"</span> <span class="na">class=</span><span class="s">"lightbox"</span><span class="nt">&gt;</span>&#x000A;      <span class="nt">&lt;p&gt;</span>&#x000A;          <span class="nt">&lt;strong&gt;</span> How Does It Work?<span class="nt">&lt;/strong&gt;&lt;br/&gt;</span>&#x000A;          Click on the 2-click button and your email app will pop up with a special email. Just hit "send" to confirm your purchase, and you're done! You will receive a receipt in your inbox.&#x000A;      <span class="nt">&lt;/p&gt;</span>&#x000A;      <span class="nt">&lt;p&gt;</span>&#x000A;          <span class="nt">&lt;strong&gt;</span> What if it's my first time using 2-click purchase?<span class="nt">&lt;/strong&gt;&lt;br/&gt;</span>&#x000A;          No problem! You will be prompted to fill in your first and last name, primary email address, and billing information. You will only have to enter this information once. In the future, you can purchase in just two clicks.&#x000A;      <span class="nt">&lt;/p&gt;</span>&#x000A;      <span class="nt">&lt;p&gt;</span>&#x000A;          <span class="nt">&lt;strong&gt;</span> How secure is it?<span class="nt">&lt;/strong&gt;&lt;br/&gt;</span>&#x000A;          Very! @Pay protects your personal information by utilizing methods above and beyond industry standards. All credit card information is handled under strict PCI compliance, and your full payment information is stored in an independent secure 3rd party vault, not on our servers.&#x000A;      <span class="nt">&lt;/p&gt;</span>&#x000A;  <span class="nt">&lt;/div&gt;</span>&#x000A;&#x000A;  <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"thanks"</span> <span class="na">class=</span><span class="s">"lightbox"</span><span class="nt">&gt;</span>&#x000A;      <span class="nt">&lt;p&gt;</span>&#x000A;          <span class="nt">&lt;strong&gt;</span>Thanks!<span class="nt">&lt;/strong&gt;&lt;br</span> <span class="nt">/&gt;&lt;br</span> <span class="nt">/&gt;</span>&#x000A;          If you have not yet, please submit the payment email to complete your purchase. Your order will be shipped to address associated with your email address.&#x000A;          <span class="nt">&lt;br/ &gt;</span>&#x000A;          If you have not yet purchesed by 2-click please press checkout to complete your order. You can register for 2-click purchases by opting in during the payment process.&#x000A;      <span class="nt">&lt;/p&gt;</span>&#x000A;  <span class="nt">&lt;/div&gt;</span>           </pre></td></tr></tbody></table>
+</div>
+</div>
+</div>
+</div>
+<div class='section'>
+<h2 class='title'>Generate the Button</h2>
+<p>Generate the mobile payment button using the Javascript below. It cues off changes to a 'submittable' class, so add that class to your form element.</p>
+<div class='tabs refblock'>
+<div class='tab_cont first'>
+<div class="highlight html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1&#x000A;2&#x000A;3&#x000A;4&#x000A;5&#x000A;6&#x000A;7&#x000A;8&#x000A;9&#x000A;10&#x000A;11&#x000A;12&#x000A;13&#x000A;14&#x000A;15&#x000A;16&#x000A;17</pre></td><td class="code"><pre>  <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>&#x000A;      <span class="nx">$</span><span class="p">(</span><span class="s2">".submittable"</span><span class="p">).</span><span class="nx">change</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>&#x000A;          <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>&#x000A;              <span class="na">amount</span> <span class="p">:</span> <span class="mf">1.00</span><span class="p">,</span>&#x000A;          <span class="p">}</span>&#x000A;          <span class="nx">atpay</span><span class="p">.</span><span class="nx">offer</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span>&#x000A;              <span class="nx">$</span><span class="p">(</span><span class="s2">".two_click span.amount"</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">offer</span><span class="p">.</span><span class="nx">amount</span><span class="p">.</span><span class="nx">toFixed</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>&#x000A;              <span class="nx">$</span><span class="p">(</span><span class="s2">".two_click"</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s1">'href'</span><span class="p">,</span> <span class="nx">response</span><span class="p">.</span><span class="nx">offer</span><span class="p">.</span><span class="nx">button</span><span class="p">.</span><span class="nx">mail_to</span><span class="p">)</span>&#x000A;              <span class="nx">$</span><span class="p">(</span><span class="s2">".two_click_wrap"</span><span class="p">).</span><span class="nx">show</span><span class="p">();</span>&#x000A;          <span class="p">})</span>&#x000A;      <span class="p">});</span>&#x000A;&#x000A;      <span class="nx">$</span><span class="p">(</span><span class="s2">".two_click"</span><span class="p">).</span><span class="nx">click</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>&#x000A;              <span class="nx">markup</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s2">"#thanks"</span><span class="p">)</span>&#x000A;              <span class="nx">$</span><span class="p">.</span><span class="nx">featherlight</span><span class="p">(</span><span class="nx">markup</span><span class="p">);</span>&#x000A;      <span class="p">});</span>&#x000A;  <span class="nt">&lt;/script&gt;</span></pre></td></tr></tbody></table>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+<div class='clear'></div>
+</div>
+<div id='footer'></div>
+</body>
+</html>
